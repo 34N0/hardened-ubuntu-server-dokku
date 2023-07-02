@@ -22,7 +22,43 @@ print_error() {
   echo -e "${RED}[PROBLEM]${NC} $1"
 }
 
-# tmp folder
+if [ -n "$SUDO_USER" ]; then
+  print_success "Script executed with sudo by user: $SUDO_USER"
+else
+  print_error "Script must be executed with sudo"
+  exit 1
+fi
+if [ -n "$SUDO_USER" ]; then
+  echo "Script executed with sudo by user: $SUDO_USER"
+else
+  echo "Script must be executed with sudo"
+  exit 1
+fi
+
+print_info "Making /tmp noexec..."
+# Check if the file /etc/systemd/system/tmp.mount exists
+if [ ! -f /etc/systemd/system/tmp.mount ]; then
+  # If it doesn't exist, copy the file from /usr/lib/systemd/system/tmp.mount
+  cp -v /usr/lib/systemd/system/tmp.mount /etc/systemd/system/
+fi
+
+# Remove the [Mount] line and the following four lines in the file /etc/systemd/system/tmp.mount
+sed -i '/\[Mount\]/,+4d' /etc/systemd/system/tmp.mount
+
+# Append the new [Mount] section to the file /etc/systemd/system/tmp.mount
+echo "[Mount]
+What=tmpfs
+Where=/tmp
+Type=tmpfs
+Options=mode=1777,strictatime,noexec,nodev,nosuid" >> /etc/systemd/system/tmp.mount
+
+# Reload the systemd daemon
+systemctl daemon-reload
+
+# Unmask and start tmp.mount
+systemctl --now unmask tmp.mount
+
+# create audit folder
 AUDITDIR="/tmp/$(hostname -s)_audit"
 TIME="$(date +%F_%T)"
 
@@ -84,6 +120,9 @@ done
 
 print_info "Upgrading password hashing algorithm to SHA512..."
 authconfig --passalgo=sha512 --update
+
+print_info "Setting core dump security limits..."
+echo '* hard core 0' > /etc/security/limits.conf
 
 print_info "Configuring Cron and Anacron..."
 yum -y install cronie-anacron >>$AUDITDIR/service_install_$TIME.log
@@ -454,6 +493,44 @@ echo "NETWORKING_IPV6=no" >>/etc/sysconfig/network
 echo "IPV6INIT=no" >>/etc/sysconfig/network
 echo "options ipv6 disable=1" >>/etc/modprobe.d/ipv6.conf
 echo "net.ipv6.conf.all.disable_ipv6=1" >>/etc/sysctl.d/ipv6.conf
+
+# Install Firewalld package
+print_info "Installing Firewalld..."
+sudo yum install -y firewalld
+
+# Start and enable Firewalld service
+print_info "Starting and enabling Firewalld service..."
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+
+# Configure Firewalld to block all incoming traffic by default
+print_info "Configuring Firewalld to block all incoming traffic..."
+sudo firewall-cmd --set-default-zone=drop
+
+# Allow SSH traffic
+print_info "Allowing SSH traffic..."
+sudo firewall-cmd --zone=drop --add-service=ssh --permanent
+
+# Allow HTTP and HTTPS traffic
+print_info "Allowing HTTP and HTTPS traffic..."
+sudo firewall-cmd --zone=drop --add-service=http --permanent
+sudo firewall-cmd --zone=drop --add-service=https --permanent
+
+# Reload Firewalld to apply the changes
+print_info "Reloading Firewalld to apply the changes..."
+sudo firewall-cmd --reload
+
+pritn_info "Enabling SELinux"
+# Check if SELinux is already set to enforcing mode
+if [ "$(getenforce)" != "Enforcing" ]; then
+  # Set SELinux to enforcing mode
+  setenforce 1
+fi
+
+# Set default umask to 077
+print_info "Setting default umask to 077 in /etc/profile..."
+sudo perl -npe 's/umask\s+0\d2/umask 077/g' -i /etc/bashrc
+sudo perl -npe 's/umask\s+0\d2/umask 077/g' -i /etc/csh.cshrc
 
 print_info "Restricting Access to the su Command..."
 cp /etc/pam.d/su $AUDITDIR/su_$TIME.bak
