@@ -19,6 +19,19 @@ print_error() {
   echo -e "${RED}[PROBLEM]${NC} $1"
 }
 
+if [ -n "$SUDO_USER" ]; then
+  print_success "Script executed with sudo by user: $SUDO_USER"
+else
+  print_error "Script must be executed with sudo"
+  exit 1
+fi
+if [ -n "$SUDO_USER" ]; then
+  echo "Script executed with sudo by user: $SUDO_USER"
+else
+  echo "Script must be executed with sudo"
+  exit 1
+fi
+
 # Check if the script is being run with bash
 if [[ -n "$BASH_VERSION" ]]; then
   print_success "This script is being run with bash."
