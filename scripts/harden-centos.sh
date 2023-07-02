@@ -166,15 +166,17 @@ EOF
 
 print_info "Configuring SSH..."
 cp /etc/ssh/sshd_config $AUDITDIR/sshd_config_$TIME.bak
-sed -i 's/#LogLevel INFO/LogLevel VERBOSE/g' /etc/ssh/sshd_config
-sed -i 's/#MaxAuthTries 6/MaxAuthTries 4/g' /etc/ssh/sshd_config
-sed -i 's/#IgnoreRhosts yes/IgnoreRhosts yes/g' /etc/ssh/sshd_config
-sed -i 's/#HostbasedAuthentication no/HostbasedAuthentication no/g' /etc/ssh/sshd_config
-sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
-sed -i 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/g' /etc/ssh/sshd_config
-sed -i 's/#PermitUserEnvironment no/PermitUserEnvironment no/g' /etc/ssh/sshd_config
-sed -i 's/#ClientAliveInterval 0/ClientAliveInterval 300/g' /etc/ssh/sshd_config
-sed -i 's/#ClientAliveCountMax 3/ClientAliveCountMax 0/g' /etc/ssh/sshd_config
+sed -ie 's/#LogLevel INFO/LogLevel VERBOSE/g' /etc/ssh/sshd_config
+sed -ie 's/#MaxAuthTries 6/MaxAuthTries 4/g' /etc/ssh/sshd_config
+sed -ie 's/#IgnoreRhosts yes/IgnoreRhosts yes/g' /etc/ssh/sshd_config
+sed -ie 's/#HostbasedAuthentication no/HostbasedAuthentication no/g' /etc/ssh/sshd_config
+sed -ie 's/#PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+sed -ie 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+sed -ie 's/#ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/g' /etc/ssh/sshd_config
+sed -ie 's/#PermitEmptyPasswords no/PermitEmptyPasswords no/g' /etc/ssh/sshd_config
+sed -ie 's/#PermitUserEnvironment no/PermitUserEnvironment no/g' /etc/ssh/sshd_config
+sed -ie 's/#ClientAliveInterval 0/ClientAliveInterval 300/g' /etc/ssh/sshd_config
+sed -ie 's/#ClientAliveCountMax 3/ClientAliveCountMax 0/g' /etc/ssh/sshd_config
 echo "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" >>/etc/ssh/sshd_config
 chown root:root /etc/ssh/sshd_config
 chmod 600 /etc/ssh/sshd_config
