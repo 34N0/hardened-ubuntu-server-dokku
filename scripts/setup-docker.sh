@@ -46,7 +46,7 @@ sudo yum update -y --allowerasing
 
 # Install prerequisite packages
 print_info "Installing prerequisite packages..."
-sudo yum install -y --allowerasing yum-utils device-mapper-persistent-data lvm2
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
 
 # Add the Docker repository
 print_info "Adding the Docker repository..."
@@ -54,7 +54,7 @@ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/dock
 
 # Install Docker Engine
 print_info "Installing Docker Engine..."
-sudo yum install -y --allowerasing docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Install Docker Compose
 print_info "Installing Docker Compose..."
