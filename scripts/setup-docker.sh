@@ -3,31 +3,29 @@
 # Color codes for fancy output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-RED='\033[0;31m'     
+RED='\033[0;31m'
 NC='\033[0m' # No color
 
 # Function to print colored messages
 print_success() {
-    echo -e "${GREEN}[SUCCESS]${NC} $1"
+  echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
 
 print_info() {
-    echo -e "${YELLOW}[INFO]${NC} $1"
+  echo -e "${YELLOW}[INFO]${NC} $1"
 }
 
 print_error() {
-    echo -e "${RED}[PROBLEM]${NC} $1"
+  echo -e "${RED}[PROBLEM]${NC} $1"
 }
-
 
 # Check if the script is being run with bash
 if [[ -n "$BASH_VERSION" ]]; then
-    print_success "This script is being run with bash."
+  print_success "This script is being run with bash."
 else
-    print_error "This script is not being run with bash."
-    exit 1
+  print_error "This script is not being run with bash."
+  exit 1
 fi
-
 
 # Update the system
 print_info "Updating the system..."
