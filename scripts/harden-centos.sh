@@ -191,7 +191,7 @@ print_info "Locking inactive user accounts..."
 useradd -D -f 30
 
 print_info "Verifying System File Permissions..."
-chmod 644 /etc/passwd
+chmod 644 /etc/passwdSetting Stick
 chmod 000 /etc/shadow
 chmod 000 /etc/gshadow
 chmod 644 /etc/group
@@ -201,7 +201,7 @@ chown root:root /etc/gshadow
 chown root:root /etc/group
 
 print_info "Setting Sticky Bit on All World-Writable Directories..."
-df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null | xargs chmod a+t >>$AUDITDIR/sticky_on_world_$TIME.log
+df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t >>$AUDITDIR/sticky_on_world_$TIME.log
 
 print_info "Searching for world writable files..."
 df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -0002 >>$AUDITDIR/world_writable_files_$TIME.log
@@ -520,7 +520,7 @@ sudo firewall-cmd --zone=drop --add-service=https --permanent
 print_info "Reloading Firewalld to apply the changes..."
 sudo firewall-cmd --reload
 
-pritn_info "Enabling SELinux"
+print_info "Enabling SELinux"
 # Check if SELinux is already set to enforcing mode
 if [ "$(getenforce)" != "Enforcing" ]; then
   # Set SELinux to enforcing mode
