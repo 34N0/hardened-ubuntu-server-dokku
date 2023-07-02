@@ -178,7 +178,11 @@ sed -i -e 's/#\?PermitUserEnvironment.*/PermitUserEnvironment no/g' /etc/ssh/ssh
 sed -i -e 's/#\?ClientAliveInterval.*/ClientAliveInterval 300/g' /etc/ssh/sshd_config
 sed -i -e 's/#\?ClientAliveCountMax.*/ClientAliveCountMax 0/g' /etc/ssh/sshd_config
 
-echo "Ciphers aes128-ctr,aes192-ctr,aes256-ctr" >>/etc/ssh/sshd_config
+# TODO fix sed
+echo "PermitRootLogin no" >>/etc/ssh/sshd_config
+echo "PasswordAuthentication no" >>/etc/ssh/sshd_config
+echo "ChallengeResponseAuthentication no" >>/etc/ssh/sshd_config
+
 chown root:root /etc/ssh/sshd_config
 chmod 600 /etc/ssh/sshd_config
 
