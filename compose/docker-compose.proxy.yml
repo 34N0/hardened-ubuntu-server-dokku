@@ -1,0 +1,20 @@
+version: '3.8' 
+
+services:
+    reverseproxy:
+        container_name: reverse-proxy-nginx
+        ports:
+            - '80:80'
+        volumes:
+            - ../../config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+        environment:
+            - PROXY=1
+        restart: always
+        image: owasp/modsecurity-crs:nginx-alpine
+        networks:
+            services:
+                aliases:
+                    - reverse-proxy-nginx
+networks:
+    services:
+        external: true
