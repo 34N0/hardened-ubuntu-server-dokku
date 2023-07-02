@@ -193,7 +193,7 @@ print_info "Locking inactive user accounts..."
 useradd -D -f 30
 
 print_info "Verifying System File Permissions..."
-chmod 644 /etc/passwdSetting Stick
+chmod 644 /etc/passwd
 chmod 000 /etc/shadow
 chmod 000 /etc/gshadow
 chmod 644 /etc/group
