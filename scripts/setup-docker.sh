@@ -42,7 +42,7 @@ fi
 
 # Update the system
 print_info "Updating the system..."
-sudo yum update -y --allowerasing
+sudo yum update -y
 
 # Install prerequisite packages
 print_info "Installing prerequisite packages..."
