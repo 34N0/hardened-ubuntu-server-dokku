@@ -50,7 +50,7 @@ echo "[Mount]
 What=tmpfs
 Where=/tmp
 Type=tmpfs
-Options=mode=1777,strictatime,noexec,nodev,nosuid" >> /etc/systemd/system/tmp.mount
+Options=mode=1777,strictatime,noexec,nodev,nosuid" >>/etc/systemd/system/tmp.mount
 
 # Reload the systemd daemon
 systemctl daemon-reload
@@ -122,7 +122,7 @@ print_info "Upgrading password hashing algorithm to SHA512..."
 authconfig --passalgo=sha512 --update
 
 print_info "Setting core dump security limits..."
-echo '* hard core 0' > /etc/security/limits.conf
+echo '* hard core 0' >/etc/security/limits.conf
 
 print_info "Configuring Cron and Anacron..."
 yum -y install cronie-anacron >>$AUDITDIR/service_install_$TIME.log
