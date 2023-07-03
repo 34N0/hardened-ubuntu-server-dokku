@@ -74,6 +74,15 @@ sudo systemctl enable docker
 print_success "Docker has been installed successfully."
 docker --version
 
+# Install Certbot dependencies
+print_info "Installing Certbot dependencies..."
+yum install -y epel-release > /dev/null 2>&1
+yum install -y certbot python2-certbot-nginx > /dev/null 2>&1
+
+
+print_success "Certbot has been installed successfully."
+
+
 # Prompt the user to reboot for changes to take effect
 read -p "$(print_info "Do you want to reboot the system now?${NC} (y/n): ")" choice
 if [[ $choice =~ ^[Yy]$ ]]; then
