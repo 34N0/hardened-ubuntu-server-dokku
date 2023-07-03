@@ -1,6 +1,3 @@
-```
-*This is still in an early stage and not recommended to use in production.*
-```
 # ⛑️ Hardened Hosting VPS
 
 ```
