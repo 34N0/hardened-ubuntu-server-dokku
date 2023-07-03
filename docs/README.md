@@ -44,7 +44,7 @@ bash scripts/harden/install-aide.bash
 9. 💫 Test & Hack 💫
 
 ### Certbot
-files will be stored at ``/etc/letsencrypt/live/yourdomain.com`
+files will be stored at ``/etc/letsencrypt/live/yourdomain.com``
 ```
 # create certificate
 sudo certbot certonly
