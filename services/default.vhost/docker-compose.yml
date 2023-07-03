@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  helloworld:
+    image: tutum/hello-world
+    networks:
+      - reverse_proxy_default
+      - default
+    environment:
+      - VIRTUAL_HOST=default.vhost
+
+networks:
+  reverse_proxy_default:
+    external: true

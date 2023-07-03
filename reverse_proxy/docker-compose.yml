@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  reverse_proxy:
+    image: jwilder/nginx-proxy:latest
+    container_name: reverse_proxy
+    restart: always
+    environment:
+      DEFAULT_HOST: default.vhost
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # - ./certs:/etc/nginx/certs
+      - /var/run/docker.sock:/tmp/docker.sock:ro
