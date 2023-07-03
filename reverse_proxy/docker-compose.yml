@@ -18,7 +18,7 @@ services:
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
   nginx-letsencrypt-companion:
-    image  : nginxproxy/acme-companion
+    image: nginxproxy/acme-companion
     restart: always
     environment:
       - NGINX_PROXY_CONTAINER=reverse_proxy
@@ -27,7 +27,7 @@ services:
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
-      - "/var/run/docker.sock:/var/run/docker.sock:ro" 
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
 volumes:
   certs:
