@@ -6,7 +6,7 @@ services:
     container_name: reverse_proxy
     restart: always
     environment:
-      DEFAULT_HOST: default.vhost
+      - DEFAULT_HOST=default.vhost
     ports:
       - "80:80"
       - "443:443"
@@ -16,6 +16,8 @@ services:
   nginx-letsencrypt-companion:
     image  : nginxproxy/acme-companion
     restart: always
+    environment:
+      - NGINX_PROXY_CONTAINER=reverse_proxy
     volumes:
       - ./certs:/etc/nginx/certs
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro" 
