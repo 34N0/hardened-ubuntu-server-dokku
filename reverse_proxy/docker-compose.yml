@@ -1,35 +1,20 @@
-version: '3'
+version: '3.5'
 
 services:
   reverse_proxy:
-    image: nginxproxy/nginx-proxy:latest
     container_name: reverse_proxy
-    restart: always
-    environment:
-      - DEFAULT_HOST=default.vhost
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
     volumes:
-      - ./hardened-nginx.conf:/etc/nginx/conf.d/hardened.conf:ro
-      - ./certs:/etc/nginx/certs
-      - certs:/etc/nginx/certs
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-  nginx-letsencrypt-companion:
-    image: nginxproxy/acme-companion
-    restart: always
+      - ./config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
     environment:
-      - NGINX_PROXY_CONTAINER=reverse_proxy
-    volumes:
-      - ./certs:/etc/nginx/certs
-      - certs:/etc/nginx/certs
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-
-volumes:
-  certs:
-  vhost:
-  html:
+      - PROXY=1
+    restart: always
+    image: owasp/modsecurity-crs:nginx-alpine
+    networks:
+      reverse_proxy:
+        aliases:
+          - reverse_proxy
+networks:
+  reverse_proxy:
+    external: true

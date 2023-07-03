@@ -1,16 +1,12 @@
-version: '3'
+version: '3.5'
 
 services:
   helloworld:
     image: tutum/hello-world
     networks:
-      - reverse_proxy_default
-      - default
-    environment:
-      - VIRTUAL_HOST=default.vhost
-      - LETSENCRYPT_HOST=example.com
-      - LETSENCRYPT_EMAIL=mail@yourdomain.tld
-      - LETSENCRYPT_SINGLE_DOMAIN_CERTS=true
+      reverse_proxy:
+        aliases:
+          - helloworld
 networks:
-  reverse_proxy_default:
+  reverse_proxy:
     external: true
