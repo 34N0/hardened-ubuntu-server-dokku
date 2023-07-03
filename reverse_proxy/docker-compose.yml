@@ -7,9 +7,11 @@ services:
     image: owasp/modsecurity-crs:nginx-alpine
     ports:
       - '80:80'
+      - '443:443'
     volumes:
       - ./config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
-      - ../etc/letsencrypt/live/helloworld.com/:/etc/nginx/ssl/helloworld.com
+      - /etc/letsencrypt/live/helloworld.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+      - /etc/letsencrypt/live/helloworld.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
     environment:
       - PROXY=1
     restart: always
