@@ -2,7 +2,7 @@ version: '3'
 
 services:
   reverse_proxy:
-    image: jwilder/nginx-proxy:latest
+    image: nginxproxy/nginx-proxy:latest
     container_name: reverse_proxy
     restart: always
     environment:
@@ -11,5 +11,11 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      # - ./certs:/etc/nginx/certs
+      - ./certs:/etc/nginx/certs
       - /var/run/docker.sock:/tmp/docker.sock:ro
+  nginx-letsencrypt-companion:
+    image  : nginxproxy/acme-companion
+    restart: always
+    volumes:
+      - ./certs:/etc/nginx/certs
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"

@@ -8,7 +8,9 @@ services:
       - default
     environment:
       - VIRTUAL_HOST=default.vhost
-
+      - LETSENCRYPT_HOST=example.com
+      - LETSENCRYPT_EMAIL=mail@yourdomain.tld
+      - LETSENCRYPT_SINGLE_DOMAIN_CERTS=true
 networks:
   reverse_proxy_default:
     external: true
