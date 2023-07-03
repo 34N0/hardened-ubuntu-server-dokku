@@ -9,6 +9,7 @@ services:
       - '80:80'
     volumes:
       - ./config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+      - ../cert/helloworld.com:/etc/nginx/ssl/helloworld.com
     environment:
       - PROXY=1
     restart: always
