@@ -48,8 +48,8 @@ bash scripts/harden/install-aide.bash
 
 ## 🥪 Dependencies
 
-- (Certbot)[https://github.com/certbot/certbot]
-- (Modsecurity)[https://hub.docker.com/r/owasp/modsecurity-crs/]
+- [Certbot](https://github.com/certbot/certbot)
+- [Modsecurity](https://hub.docker.com/r/owasp/modsecurity-crs/)
 
 ## ⚠️ Disclaimer
 
