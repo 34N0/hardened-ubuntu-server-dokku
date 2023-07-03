@@ -9,3 +9,6 @@
 # env
 .env
 !.env.example
+
+#nginx
+*.pem

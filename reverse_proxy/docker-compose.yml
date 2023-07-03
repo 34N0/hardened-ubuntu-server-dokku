@@ -11,7 +11,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ../config/proxy.conf:/etc/nginx/proxy.conf
+      - ./hardened.conf:/etc/nginx/conf.d/hardened.conf:ro
       - ./certs:/etc/nginx/certs
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
