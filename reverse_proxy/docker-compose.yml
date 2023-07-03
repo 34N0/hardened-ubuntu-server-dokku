@@ -1,8 +1,10 @@
 version: '3.5'
 
 services:
+
   reverse_proxy:
     container_name: reverse_proxy
+    image: owasp/modsecurity-crs:nginx-alpine
     ports:
       - '80:80'
     volumes:
@@ -10,11 +12,11 @@ services:
     environment:
       - PROXY=1
     restart: always
-    image: owasp/modsecurity-crs:nginx-alpine
     networks:
       reverse_proxy:
         aliases:
           - reverse_proxy
+
 networks:
   reverse_proxy:
     external: true
