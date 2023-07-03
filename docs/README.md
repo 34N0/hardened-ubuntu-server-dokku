@@ -46,6 +46,16 @@ bash scripts/harden/install-aide.bash
 ```
 9. 💫 Test & Hack 💫
 
+### Certbot
+files will be stored at ``/etc/letsencrypt/live/yourdomain.com`
+```
+# create certificate
+sudo certbot certonly
+
+# configure autorenewal
+sudo certbot renew --dry-run
+```
+
 ## 🥪 Dependencies
 
 - [Certbot](https://github.com/certbot/certbot)
