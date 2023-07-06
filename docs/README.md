@@ -51,6 +51,9 @@ sudo certbot certonly
 
 # configure autorenewal
 sudo certbot renew --dry-run
+
+# close http port
+sudo firewall-cmd --zone=drop --add-service=http --permanent
 ```
 
 ## 🥪 Dependencies
