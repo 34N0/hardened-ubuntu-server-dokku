@@ -1,5 +1,5 @@
 # bash
-.bash_history
+.bash*
 .sudo_as_admin_successful
 
 # docker
@@ -12,3 +12,8 @@
 
 #nginx
 *.pem
+
+# ssh
+.pki
+.ssh
+.vscodium-server
