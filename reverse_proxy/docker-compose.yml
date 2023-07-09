@@ -8,17 +8,24 @@ services:
     ports:
       - '80:80'
       - '443:443'
+    env_file: ./reverse_proxy.env
     volumes:
-      - ./config/proxy.conf:/etc/nginx/conf.d/proxy.conf:ro
+      - ./conf.d/proxy.conf.template:/etc/nginx/templates/conf.d/proxy.conf.template
+      - ./includes/ssl.conf.template:/etc/nginx/templates/includes/ssl.conf.template
+      - ./nginx.conf.template:/etc/nginx/templates/nginx.conf.template
+   
       - /etc/letsencrypt/live/helloworld.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
       - /etc/letsencrypt/live/helloworld.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
-    environment:
-      - PROXY=1
     restart: always
     networks:
       reverse_proxy:
         aliases:
           - reverse_proxy
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: 5
 
 networks:
   reverse_proxy:
