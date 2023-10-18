@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# 1. Ensure the script is run as root
+# 1. Check if the script is run with sudo
 if [ "$EUID" -ne 0 ]; then
-    echo "Please run this script as root."
+    echo "Please run this script with sudo privileges."
     exit 1
 fi
 
@@ -15,15 +15,7 @@ echo "Running apt update and upgrade..."
 apt update
 apt upgrade -y
 
-# 4. Create a new user called 'host'
-echo "Creating a new user 'host'..."
-adduser host
-
-# 5. Copy the public key of 'root' to 'host'
-echo "Copying the public key of 'root' to 'host'..."
-sudo -u host sh -c "mkdir -p /home/host/.ssh && cp /root/.ssh/authorized_keys /home/host/.ssh/authorized_keys && chown host:host /home/host/.ssh/authorized_keys"
-
-# 6. Remove the public key for 'root'
+# 4. Remove the public key for 'root'
 echo "Removing the public key for 'root'..."
 rm /root/.ssh/authorized_keys
 
