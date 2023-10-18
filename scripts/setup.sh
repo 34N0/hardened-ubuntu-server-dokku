@@ -7,8 +7,8 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # 2. Set APT repository location to the United States
-echo "Setting APT repository location to the United States..."
-sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/us.archive.ubuntu.com\/ubuntu\//g' /etc/apt/sources.list
+echo "Setting .is APT repository location to the United States..."
+sed -i 's/is./http:\/\/us./g' /etc/apt/sources.list
 
 # 3. Update APT package lists and upgrade installed packages
 echo "Running apt update and upgrade..."
