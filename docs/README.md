@@ -24,7 +24,7 @@ copy root ssh keys:
 rsync --archive --chown=host:host /root/.ssh /home/host
 ```
 
-### 🍳 run setup script
+### 🍳 Run setup script
 
 ```bash
 sudo bash scripts/setup.sh
@@ -45,7 +45,7 @@ run tests:
 sudo bats hardening/tests/*.bats
 ```
 
-#### lynis
+#### Lynis
 
 install lynis:
 ```bash
@@ -55,3 +55,5 @@ audit:
 ```bash
 sudo lynis audit system
 ```
+
+*act according to the bats & lynis audit reports*
