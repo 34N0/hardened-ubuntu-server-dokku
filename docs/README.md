@@ -1,6 +1,6 @@
 # ⛑️ Ubuntu Server Dokku
 
-This repository contains Dockerfiles and scripts used to set up a hardened ubuntu server using the dokku service to host websites in a production environment.
+This repository scripts used for an initial set up a hardened ubuntu server using the dokku service to host websites in a production environment.
 
 ## 📃 Introduction
 
