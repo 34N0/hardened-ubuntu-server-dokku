@@ -1,0 +1,6 @@
+[submodule "scripts/hardening"]
+	path = scripts/hardening
+	url = https://github.com/konstruktoid/hardening
+[submodule "scripts/lynis"]
+	path = scripts/lynis
+	url = https://github.com/CISOfy/lynis
