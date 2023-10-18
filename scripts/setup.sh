@@ -8,7 +8,7 @@ fi
 
 # 2. Set APT repository location to the United States
 echo "Setting .is APT repository location to the United States..."
-sed -i 's/is./http:\/\/us./g' /etc/apt/sources.list
+sed -i 's/is./us./g' /etc/apt/sources.list
 
 # 3. Update APT package lists and upgrade installed packages
 echo "Running apt update and upgrade..."
