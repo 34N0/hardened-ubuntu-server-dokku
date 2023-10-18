@@ -23,6 +23,7 @@ copy root ssh keys:
 ```bash
 rsync --archive --chown=host:host /root/.ssh /home/host
 ```
+Login as the newly created "host" user now.
 
 ### 🍳 Run setup script
 
