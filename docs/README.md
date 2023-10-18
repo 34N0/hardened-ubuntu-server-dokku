@@ -57,3 +57,7 @@ sudo lynis audit system
 ```
 
 *act according to the bats & lynis audit reports*
+
+## 🤝 Contribute
+
+We welcome contributions from the community to improve and enhance this project.
