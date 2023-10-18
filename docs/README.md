@@ -27,6 +27,11 @@ Login as the newly created "host" user now.
 
 ### 🍳 Run setup script
 
+Clone this repo into the "host" user home:
+```bash
+git clone https://github.com/34N0/ubuntu-server-dokku
+```
+run the setup script:
 ```bash
 sudo bash scripts/setup.sh
 ```
