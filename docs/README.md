@@ -38,7 +38,12 @@ sudo bash scripts/setup.sh
 
 ### ⛑️ Harden System
 
-follow the instructions in scripts/hardening
+initialize submodules
+```bash
+git submodule update --init
+```
+
+*follow the instructions in scripts/hardening...*
 
 ### 🔭 Auditing
 
