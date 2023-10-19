@@ -43,7 +43,7 @@ initialize submodules
 git submodule update --init
 ```
 
-*follow the instructions in of the [konstruktoid/hardening](https://github.com/konstruktoid/hardening repository*
+*follow the instructions in of the [konstruktoid/hardening](https://github.com/konstruktoid/hardening) repository*
 
 ### 🔭 Auditing
 
