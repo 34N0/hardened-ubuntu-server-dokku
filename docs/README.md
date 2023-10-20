@@ -1,4 +1,4 @@
-# ⛑️ Ubuntu Server Dokku
+# 🚧 Ubuntu Server Dokku
 
 This repository scripts used for an initial set up a hardened ubuntu 22.04 LTS server using the dokku service to host websites in a production environment.
 
@@ -58,11 +58,42 @@ echo "$PUBLIC_KEY" | dokku ssh-keys:add admin
 
 For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt)
 
-## ⛑️ CIS Security Compliance
+## 🚧 Configuration
+
+### 📱 SSH
+
+#### Port
+
+1. Open the /etc/ssh/sshd_config file and locate the line:
+```#Port 22``
+2. Uncomment and change the port number.
+3. restart sshd
+```bash
+systemctl restart sshd
+```
+#### 2FA
+
+Follow the official [Ubuntu Guide](https://ubuntu.com/tutorials/configure-ssh-2fa#2-installing-and-configuring-required-packages).
+
+### ⛑️ CIS Security Compliance
 
 Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_22.04_LTS_Benchmark_v1.0.0.pdf) first.
 
 To achieve CIS Level 2 Compliance attach the machine to [Ubuntu Pro](https://ubuntu.com/pro/tutorial) and follow the instructions on [CIS setup](https://ubuntu.com/security/certifications/docs/usg/cis).
+
+### 🧱 UFW
+
+Set default policies:
+```bash
+sudo ufw default deny incoming
+sudo ufw default deny outgoing
+```
+Allow Connections:
+```bash
+sudo ufw allow <ssh port>
+sudo ufw allow http
+sudo ufw allow https
+```
 
 ## 🤝 Contribute
 
