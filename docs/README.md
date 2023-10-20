@@ -33,7 +33,7 @@ git clone https://github.com/34N0/ubuntu-server-dokku
 ```
 run the setup script:
 ```bash
-sudo bash scripts/setup.sh
+sudo bash setup.sh
 ```
 
 ## 🐋 Install Dokku
