@@ -1,3 +1,0 @@
-[submodule "scripts/hardening"]
-	path = scripts/hardening
-	url = https://github.com/konstruktoid/hardening
