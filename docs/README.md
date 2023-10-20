@@ -36,38 +36,11 @@ run the setup script:
 sudo bash scripts/setup.sh
 ```
 
-### ⛑️ Harden System
+### ⛑️ CIS Security Compliance
 
-initialize submodules
-```bash
-git submodule update --init
-```
+Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_20.04_LTS_Benchmark_v1.1.0.pdf) first.
 
-*follow the instructions in of the [konstruktoid/hardening](https://github.com/konstruktoid/hardening) repository*
-
-### 🔭 Auditing
-
-install bats:
-```bash
-sudo apt-get install bats
-```
-run tests:
-```bash
-sudo bats hardening/tests/*.bats
-```
-
-#### Lynis
-
-install lynis:
-```bash
-sudo apt-get install lynis
-```
-audit:
-```bash
-sudo lynis audit system
-```
-
-*act according to the bats & lynis audit reports*
+To achieve CIS Level 2 Compliance attach the machine to [Ubuntu Pro](https://ubuntu.com/pro/tutorial) and follow the instructions on [CIS setup](https://ubuntu.com/security/certifications/docs/usg/cis).
 
 ## 🤝 Contribute
 
