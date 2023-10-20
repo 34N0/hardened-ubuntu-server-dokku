@@ -1,6 +1,6 @@
 # ⛑️ Ubuntu Server Dokku
 
-This repository scripts used for an initial set up a hardened ubuntu server using the dokku service to host websites in a production environment.
+This repository scripts used for an initial set up a hardened ubuntu 22.04 LTS server using the dokku service to host websites in a production environment.
 
 ## 📃 Introduction
 
@@ -60,7 +60,7 @@ For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsenc
 
 ## ⛑️ CIS Security Compliance
 
-Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_20.04_LTS_Benchmark_v1.1.0.pdf) first.
+Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_22.04_LTS_Benchmark_v1.0.0.pdf) first.
 
 To achieve CIS Level 2 Compliance attach the machine to [Ubuntu Pro](https://ubuntu.com/pro/tutorial) and follow the instructions on [CIS setup](https://ubuntu.com/security/certifications/docs/usg/cis).
 
