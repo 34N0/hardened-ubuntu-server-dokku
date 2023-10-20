@@ -36,7 +36,29 @@ run the setup script:
 sudo bash scripts/setup.sh
 ```
 
-### ⛑️ CIS Security Compliance
+## 🐋 Install Dokku
+
+download the installation script:
+```bash
+wget -NP . https://dokku.com/bootstrap.sh
+```
+run the installer:
+```bash
+sudo DOKKU_TAG=v0.32.0 bash bootstrap.sh
+```
+configure your server domain
+```bash
+dokku domains:set-global dokku.me
+```
+and your ssh key to the dokku user:
+```bash
+PUBLIC_KEY="your-public-key-contents-here"
+echo "$PUBLIC_KEY" | dokku ssh-keys:add admin
+```
+
+For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt)
+
+## ⛑️ CIS Security Compliance
 
 Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_20.04_LTS_Benchmark_v1.1.0.pdf) first.
 
