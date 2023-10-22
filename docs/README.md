@@ -46,13 +46,17 @@ download the installation script:
 ```bash
 wget -NP . https://dokku.com/bootstrap.sh
 ```
+get the repo key:
+```bash
+wget -qO - https://packagecloud.io/dokku/dokku/gpgkey | sudo apt-key add -
+```
 run the installer:
 ```bash
 sudo DOKKU_TAG=v0.32.0 bash bootstrap.sh
 ```
 configure your server domain
 ```bash
-dokku domains:set-global dokku.me
+dokku domains:set-global <server domain>
 ```
 and your ssh key to the dokku user:
 ```bash
