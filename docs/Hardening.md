@@ -57,7 +57,7 @@ sudo ufw allow http
 sudo ufw allow https
 ```
 
-## ⛑️ CIS Security Compliance
+## 🪂 CIS Security Compliance
 
 Make sure you read the [CIS Benchmark](CIS_Ubuntu_Linux_22.04_LTS_Benchmark_v1.0.0.pdf) first.
 

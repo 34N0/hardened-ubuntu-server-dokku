@@ -64,7 +64,7 @@ For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsenc
 
 ## 🚧 Configuration
 
-### Hardening
+### ⛑️ Hardening
 
 Follow the Steps in the [Harden](Harden.md) document.
 
