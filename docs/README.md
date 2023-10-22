@@ -32,7 +32,7 @@ Login as the newly created "host" user now.
 git init
 git remote add origin https://github.com/34N0/ubuntu-server-dokku
 git fetch
-git checkout origin/master -ft
+git checkout origin/main -ft
 ```
 
 run the setup script:
