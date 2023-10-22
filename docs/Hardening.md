@@ -28,4 +28,4 @@ systemctl restart sshd
 
 ### 2FA
 
-Follow the official [Ubuntu Guide](https://ubuntu.com/tutorials/configure-ssh-2fa#2-installing-and-configuring-required-packages).
+Follow this [Digital Ocean Guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-20-04).
