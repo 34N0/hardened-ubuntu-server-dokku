@@ -71,7 +71,7 @@ For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsenc
 
 ## 🚧 Configuration
 
-### ⛑️ Hardening
+### ⛑️ Hardening & Firewall
 
 Follow the Steps in the [Hardening](Hardening.md) document.
 
