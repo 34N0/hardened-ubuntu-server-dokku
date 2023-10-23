@@ -15,6 +15,10 @@ copy the report to host user home, make host the owner and download with:
 scp -P <port> host@<hostname>:~/usg-report-<...>.html .
 ```
 
+## 🏴 Without Ubuntu PRO
+
+Alternativelly this repository contains the script [cis-level2-server.sh](cis-level2-server.sh) which automates fixing compliance issues without having a Ubuntu Server subscription. This is not recommended since you loose the audit capabilities. Running this script blind is a bad idea so make sure you understand what it does!
+
 ## 📱 SSH
 
 Additional SSH Configuration which is not part of CIS Level 2:
