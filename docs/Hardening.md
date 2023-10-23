@@ -43,14 +43,6 @@ systemctl restart sshd
 
 Follow this [Digital Ocean Guide](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-20-04).
 
-## 🧱 Firewall
-
-The CIS Standard creates a file in ```/etc/nftables.rules```. Load the file with:
-```bash
-nft -f /etc/nftables.rules
-```
-This repository contains an [updated configuration](../templates/nftables.rules.template) file allowing a specified SSH port, Http & Https.
-
 ## 🏝️ Open-Appsec
 
 Open-Appsec is a ml base WAF. From [openappsec.io](https://www.openappsec.io/): 

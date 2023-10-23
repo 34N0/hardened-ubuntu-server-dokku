@@ -70,8 +70,23 @@ and your ssh key to the dokku user:
 PUBLIC_KEY="your-public-key-contents-here"
 echo "$PUBLIC_KEY" | dokku ssh-keys:add admin
 ```
-
 For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt)
+
+## 🚧 Configuration
+
+### ✗ NGINX
+
+This Repository provides a hardened NGINX configuration. It configures basic DOS protection through reqeuest timeout and size constraints. Additionally it sets security headers according to OWASP recommendations.
+
+```Content-Security-Policy``` and ```Content-Type``` headers should be set at application level and are not configured.
+
+### 🧱 Firewall
+
+The CIS Standard creates a file in ```/etc/nftables.rules```. Load the file with:
+```bash
+nft -f /etc/nftables.rules
+```
+This repository contains an [updated configuration](../templates/nftables.rules.template) file allowing a specified SSH port, Http & Https.
 
 ## 🤝 Contribute
 
