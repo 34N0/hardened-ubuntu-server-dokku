@@ -40,7 +40,7 @@ git checkout origin/main -ft
 
 run the setup script:
 ```bash
-sudo bash setup.sh
+sudo bash scripts/setup.sh
 ```
 
 ## 🐋 Install Dokku
