@@ -41,7 +41,7 @@ Follow this [Digital Ocean Guide](https://www.digitalocean.com/community/tutoria
 
 ## Firewall
 
-The CIS Standard creates a file in ```/etc/fstables.rules```. Load the file with:
+The CIS Standard creates a file in ```/etc/nftables.rules```. Load the file with:
 ```bash
-nftables -f /etc/fstables.rules
+nft -f /etc/nftables.rules
 ```
