@@ -49,3 +49,4 @@ The CIS Standard creates a file in ```/etc/nftables.rules```. Load the file with
 ```bash
 nft -f /etc/nftables.rules
 ```
+This repository contains an [updated configuration](../templates/nftables.rules.template) file allowing a specified SSH port, Http & Https.
