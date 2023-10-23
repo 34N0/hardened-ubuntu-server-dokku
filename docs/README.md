@@ -42,6 +42,9 @@ run the setup script:
 ```bash
 sudo bash scripts/setup.sh
 ```
+## ⛑️ Hardening & Firewall
+
+Follow the Steps in the [Hardening](Hardening.md) document.
 
 ## 🐋 Install Dokku
 
@@ -70,10 +73,6 @@ echo "$PUBLIC_KEY" | dokku ssh-keys:add admin
 For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt)
 
 ## 🚧 Configuration
-
-### ⛑️ Hardening & Firewall
-
-Follow the Steps in the [Hardening](Hardening.md) document.
 
 ## 🤝 Contribute
 
