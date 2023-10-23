@@ -7,7 +7,7 @@ This repository contains scripts, configuration templates, and documentation use
 - 👩🏻‍🍳 Key-Based SSH with TOTP 2FA
 - ⛑️ CIS Level 2 Compliance
 - 🐋 Dokku PaaS with automated SSL
-- 🚧 NGINX Proxy using Open-Appsec WAF
+- 🚧 NGINX Proxy using 🏝️ Open-Appsec WAF
 
 ## 🏗️ Setup
 
