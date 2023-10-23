@@ -7,7 +7,8 @@ This repository contains scripts, configuration templates, and documentation use
 - 👩🏻‍🍳 Key-Based SSH with TOTP 2FA
 - ⛑️ CIS Level 2 Compliance
 - 🐋 Dokku PaaS with automated SSL
-- 🚧 NGINX Proxy using 🏝️ Open-Appsec WAF
+- 🚧 Providing hardened NGINX and Firewall configurations
+- 🚧 Open-Appsec WAF
 
 ## 🏗️ Setup
 
@@ -71,8 +72,6 @@ echo "$PUBLIC_KEY" | dokku ssh-keys:add admin
 ```
 
 For automatic SSL use [dokku-letsencrypt](https://github.com/dokku/dokku-letsencrypt)
-
-## 🚧 Configuration
 
 ## 🤝 Contribute
 

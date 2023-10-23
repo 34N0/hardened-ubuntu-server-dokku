@@ -1,0 +1,140 @@
+load_module /usr/lib/nginx/modules/ngx_cp_attachment_module.so;
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+
+	##
+	# Basic Settings
+	##
+
+	sendfile on;
+	tcp_nopush on;
+	types_hash_max_size 2048;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##
+	# Security Settings
+	##
+
+  # hide version
+  #  server_tokens off;
+
+  # mitigate dos by low keepalive
+  keepalive_timeout 10;
+
+  # slow http dos by send_timeout between sucessive writes
+  send_timeout 10;
+
+  # set client timeouts to mitigate dos attacks
+  client_body_timeout 10;
+  client_header_timeout 10;
+
+  # set max request size to mitigate buffer overflow attacks
+  client_max_body_size 100K;
+
+  # set max size in uri to mitigate BOA using uri parameters
+  large_client_header_buffers 2 1k;
+
+	# headers according to owasp recommendations
+
+	# Block response sniffing
+  add_header X-Content-Type-Options "nosniff";
+
+	# Disable referer url in redirects
+  add_header Referrer-Policy "strict-origin-when-cross-origin";
+
+	# Wanting SSL
+	add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
+
+	# Isolates the browsing context exclusively to same-origin documents
+  add_header Cross-Origin-Opener-Policy "same-origin";
+
+  # A document can only load resources from the same origin
+	add_header Cross-Origin-Embedder-Policy "require-corp";
+
+	# Limit ressource loading to site and sub-domains only
+  add_header Cross-Origin-Resource-Policy "same-site";
+
+  # Block external X-Frames
+  add_header X-Frame-Options "SAMEORIGIN";
+
+	# prevent https downgrade attacks
+  add_header Strict-Transport-Security "max-age=15768000;";
+
+	# restrict hardware permissions
+	add_header Permissions-Policy "geolocation=(), camera=(), microphone=();";
+
+	##
+	# SSL Settings
+	##
+
+	# ssl_protocols TLSv1.2 TLSv1.3;
+	# ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305;
+	# ssl_prefer_server_ciphers off;
+	# ssl_session_timeout 1d;
+	# ssl_session_cache shared:MozSSL:10m;
+	# ssl_session_tickets off;
+
+	##
+	# Logging Settings
+	##
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+
+	#gzip_vary on;
+	#gzip_proxied any;
+	#gzip_comp_level 6;
+	#gzip_buffers 16 8k;
+	#gzip_http_version 1.1;
+	#gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript
+	
+	
+	##
+	# Virtual Host Configs
+	##
+
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
+
+
+#mail {
+#	# See sample authentication script at:
+#	# http://wiki.nginx.org/ImapAuthenticateWithApachePhpScript
+#
+#	# auth_http localhost/auth.php;
+#	# pop3_capabilities "TOP" "USER";
+#	# imap_capabilities "IMAP4rev1" "UIDPLUS";
+#
+#	server {
+#		listen     localhost:110;
+#		protocol   pop3;
+#		proxy      on;
+#	}
+#
+#	server {
+#		listen     localhost:143;
+#		protocol   imap;
+#		proxy      on;
+#	}
+#}
