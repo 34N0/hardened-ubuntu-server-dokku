@@ -1,0 +1,63 @@
+#!/sbin/nft -f
+# This nftables.rules config should be saved as /etc/nftables.rules
+
+# it allows SSH on a specified Port (<port_number>), Http & Https
+
+# flush nftables rulesset
+flush ruleset
+
+# Load nftables ruleset
+# nftables config with inet table named filter
+table inet filter {
+# Base chain for input hook named input (Filters inbound network packets)
+chain input {
+	type filter hook input priority 0; policy drop;
+	# Ensure loopback traffic is configured
+	iif "lo" accept
+	ip saddr 127.0.0.0/8 counter packets 0 bytes 0 drop
+	ip6 saddr ::1 counter packets 0 bytes 0 drop
+	# Ensure established connections are configured
+	ip protocol tcp ct state established accept
+	ip protocol udp ct state established accept
+	ip protocol icmp ct state established accept
+
+	# <port_number>(SSH)
+	tcp dport <port_number> accept
+  
+  # Http & Https
+  tcp dport http accept
+  tcp dport https accept
+
+	# Accept ICMP and IGMP from anywhere
+	icmpv6 type { destination-unreachable, packet-too-big, time-exceeded,
+		parameter-problem, mld-listener-query, mld-listener-report, mld-listener-done,
+		nd-router-solicit, nd-router-advert, nd-neighbor-solicit,
+		nd-neighbor-advert, ind-neighbor-solicit, ind-neighbor-advert, mld2-listener-report
+	} accept
+	icmp type { destination-unreachable, router-advertisement,
+		router-solicitation, time-exceeded, parameter-problem
+	} accept
+	ip  protocol igmp accept
+}
+# Base chain for hook forward named forward (Filters forwarded network packets)
+chain forward {
+	type filter hook forward priority 0; policy drop;
+}
+# Base chain for hook output named output (Filters outbount network packets)
+chain output {
+	type filter hook output priority 0; policy drop;
+	# Ensure outbound and established connections are configured
+	ip protocol tcp ct state established,related,new accept
+	ip protocol udp ct state established,related,new accept
+	ip protocol icmp ct state established,related,new accept
+
+	# <port_number>(SSH)
+  tcp dport <port_number> accept
+  
+  # Http & Https
+  tcp dport http accept
+  tcp dport https accept
+        
+}
+
+}

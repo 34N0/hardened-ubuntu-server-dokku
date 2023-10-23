@@ -2,7 +2,7 @@
 
 ## 📃 Introduction
 
-This repository contains scripts, configurations, and documentation used for the initial setup of a hardened Ubuntu 22.04 LTS server using the Dokku service to host websites in a secure production environment. This project aims to achieve the following goals:
+This repository contains scripts, configuration templates, and documentation used for the initial setup of a hardened Ubuntu 22.04 LTS server using the Dokku service to host websites in a secure production environment. This project aims to achieve the following goals:
 
 - 👩🏻‍🍳 Key-Based SSH with TOTP 2FA
 - ⛑️ CIS Level 2 Compliance
