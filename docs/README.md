@@ -1,4 +1,4 @@
-# 🚧 hardened-ubuntu-server-dokku
+# 🐋 Hardened ubuntu server dokku
 
 ## 📃 Introduction
 
